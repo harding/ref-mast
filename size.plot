@@ -16,9 +16,6 @@ set style line 7 lt 1 lc rgb '#a2142f' lw 2 # red
 set style line 15 lc rgb '#77ac30' lw 2 lt 2 # green
 set style line 16 lc rgb '#4dbeee' lw 2 lt 2 # light-blue
 
-set terminal pngcairo size 800,300 font "Sans,12"
-set output "encumbrance-data1.png"
-
 ## For two subscripts, the script is 115 bytes:
 ## OP_IF OP_PUSH33 <a_pubkey> OP_CHECKSIG
 ## OP_ELSE <4 bytes> OP_CSV OP_DROP OP_2 OP_PUSH33 <b_pubkey> OP_PUSH33
@@ -51,6 +48,9 @@ mast_size(subscripts) = used_encumbrance_bytes + ceil(log(subscripts)) * 32.125
 ############################################
 ## FIRST PLOT: linear bytesize/subscripts ##
 ############################################
+set terminal pngcairo size 800,300 font "Sans,12"
+set output "encumbrance-data1.png"
+
 set xlabel "Number of sub-scripts"
 set ylabel "Spending script size (bytes)"
 unset key

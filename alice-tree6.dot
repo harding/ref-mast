@@ -17,11 +17,11 @@ l1;
     r0;
     l2;
   }
-node [ fontcolor = white ];
-r0 -> { l1, l2 };
-l1 -> m1;
+  node [ fontcolor = white ];
+  r0 -> { l1, l2 };
+  l1 -> m1;
 
-label = "Alice's encumbrance"
+  label = "Alice's encumbrance"
 
 }
 
@@ -32,11 +32,11 @@ subgraph cluster_bar {
     b0;
     c1;
   }
-node [ fontcolor = white ];
-b0 -> { c1, c2 };
-c1 -> a2;
+  node [ fontcolor = white ];
+  b0 -> { c1, c2 };
+  c1 -> a2;
 
-label = "Andrew's encumbrance"
+  label = "Andrew's encumbrance"
 
 }
 
@@ -47,24 +47,14 @@ subgraph cluster_baz {
     bb0;
     cc1;
   }
-node [ fontcolor = white ];
-bb0 -> { cc1, cc2 };
-cc2 -> aa1;
+  node [ fontcolor = white ];
+  bb0 -> { cc1, cc2 };
+  cc2 -> aa1;
 
-label = "Alex's encumbrance"
+  label = "Alex's encumbrance"
 
 }
 
 label = "With MAST, these three different encumbrances can look functionally identical"
-
-{
-//node [ shape = none ];
-//a -> b -> c -> d [ style = "invis" ];
-
-//a [ label = "Merkle root" ];
-//b [ label = "Interior nodes" ];
-//c [ label = "Leaf nodes" ];
-//d [ label = "Members\n(data)" ];
-}
 
 }
