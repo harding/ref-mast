@@ -1,0 +1,37 @@
+digraph ast {
+
+splines = ortho;
+node [ shape = box ];
+
+{
+  //node [ shape = box ];
+
+  or [ label = "Or" ];
+  and [ label = "And" ];
+  op_checksig [ label = "OP_CheckSig" ];
+  op_checkmultisig [ label = "OP_CheckMultiSig" ];
+  csv [ label = "OP_CheckSequenceVerify\n(OP_CSV)" ];
+  drop [ label = "OP_Drop" ];
+}
+
+{
+  //node [ shape = box, style = diagonals ];
+
+  m [ label = "m(2)\n(How many\nsignatures required)" ];
+  n [ label = "n(2)\n(Number of\npublic keys provided)" ];
+  bob_pubkey [ label = "Bob's public key" ];
+  alice_pubkey [ label = "Alice's public key" ];
+  charlie_pubkey [ label = "Charlie's public key" ];
+  expiry_time [ label = "Timeout" ];
+  
+
+
+}
+
+or -> { op_checksig, and };
+op_checksig -> alice_pubkey;
+and -> { csv, drop, op_checkmultisig };
+{csv, drop} -> expiry_time;
+op_checkmultisig -> { m, n, bob_pubkey, charlie_pubkey };
+
+}

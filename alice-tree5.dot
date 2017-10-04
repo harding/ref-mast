@@ -1,0 +1,75 @@
+digraph tree {
+labelloc = b
+
+//splines = ortho;
+node [ shape = box, width = 0.2, height = 0.2, fontsize = 10, label = "" ];
+graph [ penwidth = 0.3, fontsize = 10 ]
+
+ranksep = 0.3;
+nodesep = 0.1;
+
+
+subgraph cluster_foo {
+//l1;
+  {
+    node [ style = diagonals ];
+    m1 [ label = "OP_If\n<pubkey1> OP_CheckSig\nOP_Else\n'3 months' OP_CSV OP_Drop\n2 <pubkey2> <pubkey3> 2 OP_CheckMultiSig\nOP_EndIf" ];
+//    r0;
+//    l2;
+  }
+//node [ fontcolor = white ];
+//r0 -> { l1, l2 };
+//l1 -> m1 [ minlen = 2 ];
+
+label = "Alice's encumbrance,\nmatches the template she's known to use"
+
+}
+
+subgraph cluster_bar {
+//d1;
+  {
+    node [ style = diagonals ];
+    a2 [ label = "<pubkey1> OP_CheckSig" ];
+//    b0;
+//    c1;
+//    d2;
+  }
+//node [ fontcolor = white ];
+//b0 -> { c1, c2 };
+//c2 -> { d1, d2 };
+//d1 -> a2;
+
+label = "Andrew's encumbrance,\nobviously different than Alice's template"
+
+}
+
+subgraph cluster_baz {
+  {
+    node [ style = diagonals ];
+    aa1 [ label = "OP_If\n<pubkey1> OP_CheckSig\nOP_Else\n<pubkey2> OP_CheckSig\nOP_EndIf" ];
+    //bb0;
+    //cc1;
+    //dd1;
+  }
+node [ fontcolor = white ];
+//bb0 -> { cc1, cc2 };
+//cc2 -> { dd1, dd2 };
+//dd2 -> aa1;
+
+label = "Alex's encumbrance,\nobviously different than Alice's template"
+
+}
+
+{
+//node [ shape = none ];
+//a -> b -> c -> d [ style = "invis" ];
+
+//a [ label = "Merkle root" ];
+//b [ label = "Interior nodes" ];
+//c [ label = "Leaf nodes" ];
+//d [ label = "Members\n(data)" ];
+}
+
+label = "Without MAST, it's easy to distinguish between these three different encumbrances"
+
+}

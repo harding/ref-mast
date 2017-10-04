@@ -1,0 +1,67 @@
+digraph tree {
+labelloc = b
+
+//splines = ortho;
+node [ shape = box, width = 0.2, height = 0.2, fontsize = 10, label = "" ];
+graph [ penwidth = 0.3, fontsize = 10 ]
+
+ranksep = 0.3;
+nodesep = 0.1;
+
+
+subgraph cluster_foo {
+  l1
+  {
+    node [ style = diagonals ];
+    m1 [ label = "<Alice pubkey> OP_CheckSig" ];
+    r0;
+    l2;
+  }
+node [ fontcolor = white ];
+r0 -> { l1, l2 };
+l1 -> m1;
+
+label = " \nAlice spends her bitcoins\n~100 bytes"
+
+}
+subgraph cluster_bar {
+  {
+    node [ style = diagonals ];
+    a2 [ label = "'3 months' OP_CSV OP_Drop\n2 <Bob pubkey> <Charlie pubkey>\n2 OP_CheckMultiSig" ];
+    b0;
+    c1;
+  }
+node [ fontcolor = white ];
+b0 -> { c1, c2 };
+c2 -> a2;
+
+label = "Bob and Charle spend the bitcoins after 3 months\n~143 bytes"
+
+}
+
+
+subgraph cluster_quux {
+  {
+    node [ shape = none ];
+    dn_label -> cn_label  [ style = invis ];
+    dn_label [ label = "Data included in block chain" ];
+    cn_label [ label = "Not included in block chain\n(computed at runtime)" ];
+  }
+  data_node [ style = "diagonals" ];
+  data_node -> computed_node [ style = invis ];
+
+  penwidth = 0;
+  label = "Legend"
+}
+
+{
+//node [ shape = none ];
+//a -> b -> c -> d [ style = "invis" ];
+
+//a [ label = "Merkle root" ];
+//b [ label = "Interior nodes" ];
+//c [ label = "Leaf nodes" ];
+//d [ label = "Members\n(data)" ];
+}
+
+}
