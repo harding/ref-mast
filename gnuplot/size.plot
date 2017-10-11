@@ -1,5 +1,7 @@
 #!/usr/bin/gnuplot
 
+log2(x) = log(x) / log(2)
+
 ## Reset linetypes
 set for [i=1:5] linetype i dt i
 
@@ -42,7 +44,7 @@ used_encumbrance_bytes = 77 + 33 + 1 + 4
 
 ## To use a merkle branch, we need 32 bytes per hash plus a one-bit flag
 ## to indicate right or left branch
-mast_size(subscripts) = used_encumbrance_bytes + ceil(log(subscripts)) * 32.125
+mast_size(subscripts) = used_encumbrance_bytes + ceil(log2(subscripts)) * 32.125
 
 
 ############################################
@@ -71,7 +73,7 @@ set terminal pngcairo size 800,300 font "Sans,12"
 set output "encumbrance-data2.png"
 
 set label 1 "Without MAST" at 22,4700 tc ls 1
-set label 2 "With MAST" at 22,350 tc ls 2
+set label 2 "With MAST" at 22,410 tc ls 2
 
 set ylabel "Byte size (log scale)"
 set logscale y
@@ -84,7 +86,7 @@ set terminal pngcairo size 800,300 font "Sans,12"
 set output "encumbrance-data3.png"
 
 set label 3 "Best case (always \\~100 bytes)" at 22,135 tc ls 3
-set label 4 "Worst case" at 80,400 tc ls 4
+set label 4 "Worst case" at 80,500 tc ls 4
 
 ## Alice spend is always at depth=1, so subscripts always equivilent to 2.
 ## Also, we assumed CSV&&Bob+Charlie spend when calculating byte sizes,
